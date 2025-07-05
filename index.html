@@ -41,6 +41,25 @@
     </div>
 
   </div>
+<script>
+  // Запрос разрешения на уведомления
+  if ("Notification" in window && Notification.permission !== "granted") {
+    Notification.requestPermission();
+  }
 
+  // Обработчик кликов по всем ссылкам внутри карточек
+  document.addEventListener("DOMContentLoaded", () => {
+    document.querySelectorAll(".card a").forEach(link => {
+      link.addEventListener("click", () => {
+        if (Notification.permission === "granted") {
+          new Notification("Кодовое слово: FReedoM500", {
+            body: "Не делитесь этим кодом.",
+            icon: "icons/app-icon-192.png" // если хочешь иконку
+          });
+        }
+      });
+    });
+  });
+</script>
 </body>
 </html>
